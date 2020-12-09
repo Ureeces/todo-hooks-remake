@@ -7,14 +7,15 @@ import "./Todo.css";
 const TodoView = () => {
   const {
     todoList: { id, todo, isCompleted },
-    deleteTodoById
+    deleteTodoById,
+    completeTodoById
   } = useContext(TodoViewContext);
 
   return (
     <div style={{ textDecoration: isCompleted ? "line-through" : "" }}>
       {todo}
       <div>
-          <Button color="primary" variant="outlined">Complete</Button>
+          <Button color="primary" variant="outlined" onClick={() => completeTodoById(id)}>Complete</Button>
           <Button color="secondary" variant="outlined" onClick={() => deleteTodoById(id)}>Delete</Button>
       </div>
       <hr></hr>

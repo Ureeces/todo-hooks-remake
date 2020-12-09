@@ -30,7 +30,7 @@ const Todo = () => {
     return todos.map((todoList) => {
       return (
         <TodoViewContext.Provider
-          value={{ todoList, deleteTodoById }}
+          value={{ todoList, deleteTodoById, completeTodoById }}
           key={todoList.id}
         >
           <TodoView />
@@ -76,6 +76,24 @@ const Todo = () => {
     setTodos(newTodos);
 
     console.log("Deleted todo:", deletedTodo);
+  };
+
+  const completeTodoById = (targetID) => {
+    let updatedTodos = [...todos];
+
+    updatedTodos.map((todo) => {
+      if (todo.id === targetID && !todo.isCompleted) {
+        todo.isCompleted = true;
+        console.log("Completed todo:", todo.todo);
+      } else if (todo.id === targetID && todo.isCompleted) {
+        todo.isCompleted = false;
+        console.log("Uncompleted todo:", todo.todo);
+      }
+
+      return todo;
+    });
+
+    setTodos(updatedTodos);
   };
 
   return (
