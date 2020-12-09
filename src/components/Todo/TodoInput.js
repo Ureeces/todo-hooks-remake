@@ -1,9 +1,7 @@
 import React from "react";
 
-export const TodoInput = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+const TodoInput = () => {
+  return <div></div>;
+};
+
+export default TodoInput;

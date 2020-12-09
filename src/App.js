@@ -1,12 +1,10 @@
 import React from "react";
-import TodoView from "./components/TodoView";
+import Todo from "./components/Todo/Todo";
 
-import './App.css';
+import "./App.css";
 
 function App() {
-  return (
-   <TodoView />
-  );
+  return <Todo />;
 }
 
 export default App;
