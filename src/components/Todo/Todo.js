@@ -29,7 +29,10 @@ const Todo = () => {
   const showAllTodos = () => {
     return todos.map((todoList) => {
       return (
-        <TodoViewContext.Provider value={{ todoList }} key={todoList.id}>
+        <TodoViewContext.Provider
+          value={{ todoList, deleteTodoById }}
+          key={todoList.id}
+        >
           <TodoView />
         </TodoViewContext.Provider>
       );
@@ -56,6 +59,23 @@ const Todo = () => {
     setTodos(newTodos);
 
     console.log("Added new todo:", todo);
+  };
+
+  const deleteTodoById = (targetID) => {
+    let newTodos = [...todos];
+    let deletedTodo;
+
+    newTodos = newTodos.filter((todo) => {
+      if (todo.id === targetID) {
+        deletedTodo = todo.todo;
+      } else {
+        return todo;
+      }
+    });
+
+    setTodos(newTodos);
+
+    console.log("Deleted todo:", deletedTodo);
   };
 
   return (

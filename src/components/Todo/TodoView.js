@@ -7,6 +7,7 @@ import "./Todo.css";
 const TodoView = () => {
   const {
     todoList: { id, todo, isCompleted },
+    deleteTodoById
   } = useContext(TodoViewContext);
 
   return (
@@ -14,7 +15,7 @@ const TodoView = () => {
       {todo}
       <div>
           <Button color="primary" variant="outlined">Complete</Button>
-          <Button color="secondary" variant="outlined">Delete</Button>
+          <Button color="secondary" variant="outlined" onClick={() => deleteTodoById(id)}>Delete</Button>
       </div>
       <hr></hr>
     </div>
