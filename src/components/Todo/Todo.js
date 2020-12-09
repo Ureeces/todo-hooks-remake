@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+
 import TodoView from "./TodoView";
-import { TodoInput } from "./TodoInput";
-import { TodoViewContext } from "../../context/context";
+import TodoInput from "./TodoInput";
+import { TodoViewContext, TodoInputContext } from "../../context/context";
 
 const Todo = () => {
   let initialTodoArray = [
@@ -35,7 +36,34 @@ const Todo = () => {
     });
   };
 
-  return <div>{showAllTodos()}</div>;
+  const showInputTodo = () => {
+    return (
+      <TodoInputContext.Provider value={{ addTodo }}>
+        <TodoInput />
+      </TodoInputContext.Provider>
+    );
+  };
+
+  const addTodo = (todo) => {
+    let newTodo = {
+      id: uuidv4(),
+      todo: todo,
+      isCompleted: false,
+    };
+
+    let newTodos = [...todos, newTodo];
+
+    setTodos(newTodos);
+
+    console.log("Added new todo:", todo);
+  };
+
+  return (
+    <div>
+      {showInputTodo()}
+      {showAllTodos()}
+    </div>
+  );
 };
 
 export default Todo;
